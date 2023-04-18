@@ -12,12 +12,23 @@ while looping:
 
     if (val == "1"):
         print("\nlista elever\n")
+        skola.print_elevlist()
+        input("\n\ntryck enter för att fortsätta!\n\n")
 
     elif (val == "2"):
-        print("\nadd elev\n")
+        print("\nLägg till Elev\n")
+        namn = input("Mata in namntet: ")
+        utb = input ("Mata in utbilding: ")
+        tel = input ("Mata in telefonnummer")
 
+        skola.add_elev(namn, utb, tel)
+
+
+    
     elif (val == "3"):
-        print("\nremove elev\n")
+        skola.del_elev()
+
+    
 
     elif (val == "4"):
         break
