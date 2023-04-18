@@ -1,10 +1,18 @@
 import elev
+import pickle
+import os
 
 class ElevHandler:
 
     #Konstruktor-----------------------------------
     def __init__(self):
         self.elevlist = []
+        self.filnamn = "elever.pkl"
+
+        try:
+            self.read_from_file()
+        except ValueError:
+            print("Kunde inte läsa in filen " + self.filnamn)
 
     def print_meny(self):
         print("------------------------")
@@ -41,3 +49,25 @@ class ElevHandler:
 
         except ValueError:
             print("\n kunde inte ta bort eleven")    
+
+    def save_to_fil(self):
+         self.elevlist = sorted( self.elevlist, key=lambda p: p.namn )
+
+         with open (self.filnamn, "wb") as f:
+             pickle.dump(self.elevlist, f)
+
+    def spara_avsluta(self):
+        self.save_to_fil()
+
+    def read_from_file(self):
+
+        #om filen saknas 
+        if not os.path.exists(self.filnamn):
+            with open(self.filnamn, "w") as f:
+                f.write("")
+    
+        else:
+            #öppnar fil för läsning
+            with open(self.filnamn, "rb") as f:
+                elever = pickle.load(f)
+                self.elevlista=elever

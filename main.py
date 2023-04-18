@@ -31,4 +31,6 @@ while looping:
     
 
     elif (val == "4"):
+        skola.save_to_fil()
         break
+    
